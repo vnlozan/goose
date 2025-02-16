@@ -4,9 +4,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/pressly/goose/v3/database"
-	"github.com/pressly/goose/v3/internal/testing/testdb"
 	"github.com/stretchr/testify/require"
+	"github.com/vnlozan/goose/v3/database"
+	"github.com/vnlozan/goose/v3/internal/testing/testdb"
 )
 
 func TestPostgres(t *testing.T) {
@@ -197,7 +197,7 @@ func TestYDB(t *testing.T) {
 func TestStarrocks(t *testing.T) {
 	t.Parallel()
 
-	t.Skip("Starrocks is flaky on CI, see https://github.com/pressly/goose/issues/881")
+	t.Skip("Starrocks is flaky on CI, see https://github.com/vnlozan/goose/issues/881")
 
 	db, cleanup, err := testdb.NewStarrocks()
 	require.NoError(t, err)

@@ -5,9 +5,9 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/pressly/goose/v3"
-	_ "github.com/pressly/goose/v3/tests/gomigrations/register/testdata"
 	"github.com/stretchr/testify/require"
+	"github.com/vnlozan/goose/v3"
+	_ "github.com/vnlozan/goose/v3/tests/gomigrations/register/testdata"
 )
 
 func TestAddFunctions(t *testing.T) {

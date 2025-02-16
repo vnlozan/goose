@@ -7,8 +7,8 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/pressly/goose/v3/database"
 	"github.com/stretchr/testify/require"
+	"github.com/vnlozan/goose/v3/database"
 	"go.uber.org/multierr"
 	"modernc.org/sqlite"
 )

@@ -5,13 +5,14 @@ import (
 	"database/sql"
 	"errors"
 	"fmt"
-	"go.uber.org/multierr"
 	"io/fs"
 	"math"
 	"path"
 	"sort"
 	"strings"
 	"time"
+
+	"go.uber.org/multierr"
 )
 
 var (
@@ -229,7 +230,7 @@ func EnsureDBVersionContext(ctx context.Context, db *sql.DB) (int64, error) {
 	// this column.
 	//
 	// For context, see:
-	// https://github.com/pressly/goose/pull/131#pullrequestreview-178409168
+	// https://github.com/vnlozan/goose/pull/131#pullrequestreview-178409168
 	//
 	// The dbMigrations list is expected to be ordered by descending ID. But
 	// in the future we should be able to query the last record only.

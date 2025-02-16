@@ -1,7 +1,7 @@
 package gomigrations
 
 import (
-	"github.com/pressly/goose/v3"
+	"github.com/vnlozan/goose/v3"
 )
 
 func init() {

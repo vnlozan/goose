@@ -14,9 +14,9 @@ import (
 	"testing"
 	"testing/fstest"
 
-	"github.com/pressly/goose/v3"
-	"github.com/pressly/goose/v3/database"
 	"github.com/stretchr/testify/require"
+	"github.com/vnlozan/goose/v3"
+	"github.com/vnlozan/goose/v3/database"
 )
 
 func TestProviderRun(t *testing.T) {
@@ -657,8 +657,8 @@ func TestAllowMissing(t *testing.T) {
 		}
 
 		// This behaviour may need to change, see the following issues for more details:
-		//  - https://github.com/pressly/goose/issues/523
-		//  - https://github.com/pressly/goose/issues/402
+		//  - https://github.com/vnlozan/goose/issues/523
+		//  - https://github.com/vnlozan/goose/issues/402
 
 		testDownAndVersion(6, 6)
 		testDownAndVersion(5, 4) // Ensure the max db version is 5 before down.
