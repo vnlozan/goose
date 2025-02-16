@@ -7,6 +7,7 @@ const (
 	Postgres   Dialect = "postgres"
 	Mysql      Dialect = "mysql"
 	Sqlite3    Dialect = "sqlite3"
+	Rqlite     Dialect = "rqlite"
 	Sqlserver  Dialect = "sqlserver"
 	Redshift   Dialect = "redshift"
 	Tidb       Dialect = "tidb"

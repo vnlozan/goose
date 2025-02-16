@@ -55,6 +55,8 @@ func NewStore(d Dialect) (Store, error) {
 		querier = &dialectquery.Mysql{}
 	case Sqlite3:
 		querier = &dialectquery.Sqlite3{}
+	case Rqlite:
+		querier = &dialectquery.Rqlite{}
 	case Sqlserver:
 		querier = &dialectquery.Sqlserver{}
 	case Redshift:
@@ -129,6 +131,21 @@ func (s *store) GetMigration(
 	tableName string,
 	version int64,
 ) (*GetMigrationResult, error) {
+	if _, ok := s.querier.(*dialectquery.Rqlite); ok {
+		q := s.querier.GetMigrationByVersion(tableName)
+		var timestamp time.Time
+		var isAppliedFloat float64 // Scan as float64
+		err := db.QueryRowContext(ctx, q, version).Scan(&timestamp, &isAppliedFloat)
+		if err != nil {
+			return nil, err
+		}
+		isApplied := isAppliedFloat != 0
+		return &GetMigrationResult{
+			IsApplied: isApplied,
+			Timestamp: timestamp,
+		}, nil
+	}
+
 	q := s.querier.GetMigrationByVersion(tableName)
 	var timestamp time.Time
 	var isApplied bool
@@ -143,6 +160,35 @@ func (s *store) GetMigration(
 }
 
 func (s *store) ListMigrations(ctx context.Context, db *sql.DB, tableName string) ([]*ListMigrationsResult, error) {
+	if _, ok := s.querier.(*dialectquery.Rqlite); ok {
+		q := s.querier.ListMigrations(tableName)
+		rows, err := db.QueryContext(ctx, q)
+		if err != nil {
+			return nil, err
+		}
+		defer rows.Close()
+
+		var migrations []*ListMigrationsResult
+		for rows.Next() {
+			var versionFloat float64
+			var isAppliedFloat float64
+			if err := rows.Scan(&versionFloat, &isAppliedFloat); err != nil {
+				return nil, err
+			}
+			// Convert float64 to bool
+			isApplied := isAppliedFloat != 0
+			version := int64(versionFloat)
+			migrations = append(migrations, &ListMigrationsResult{
+				VersionID: version,
+				IsApplied: isApplied,
+			})
+		}
+		if err := rows.Err(); err != nil {
+			return nil, err
+		}
+		return migrations, nil
+	}
+
 	q := s.querier.ListMigrations(tableName)
 	rows, err := db.QueryContext(ctx, q)
 	if err != nil {
