@@ -8,9 +8,9 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/pressly/goose/v3"
-	"github.com/pressly/goose/v3/database"
 	"github.com/stretchr/testify/require"
+	"github.com/vnlozan/goose/v3"
+	"github.com/vnlozan/goose/v3/database"
 )
 
 type collected struct {

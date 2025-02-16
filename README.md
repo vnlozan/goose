@@ -3,11 +3,11 @@
 <img align="right" width="125" src="assets/goose_logo.png">
 
 [![Goose
-CI](https://github.com/pressly/goose/actions/workflows/ci.yaml/badge.svg)](https://github.com/pressly/goose/actions/workflows/ci.yaml)
+CI](https://github.com/vnlozan/goose/actions/workflows/ci.yaml/badge.svg)](https://github.com/vnlozan/goose/actions/workflows/ci.yaml)
 [![Go
-Reference](https://pkg.go.dev/badge/github.com/pressly/goose/v3.svg)](https://pkg.go.dev/github.com/pressly/goose/v3)
+Reference](https://pkg.go.dev/badge/github.com/vnlozan/goose/v3.svg)](https://pkg.go.dev/github.com/vnlozan/goose/v3)
 [![Go Report
-Card](https://goreportcard.com/badge/github.com/pressly/goose/v3)](https://goreportcard.com/report/github.com/pressly/goose/v3)
+Card](https://goreportcard.com/badge/github.com/vnlozan/goose/v3)](https://goreportcard.com/report/github.com/vnlozan/goose/v3)
 
 Goose is a database migration tool. Both a CLI and a library.
 
@@ -28,7 +28,7 @@ Manage your **database schema** by creating incremental SQL changes or Go functi
 # Install
 
 ```shell
-go install github.com/pressly/goose/v3/cmd/goose@latest
+go install github.com/vnlozan/goose/v3/cmd/goose@latest
 ```
 
 This will install the `goose` binary to your `$GOPATH/bin` directory.
@@ -392,7 +392,7 @@ import (
     "database/sql"
     "embed"
 
-    "github.com/pressly/goose/v3"
+    "github.com/vnlozan/goose/v3"
 )
 
 //go:embed migrations/*.sql
@@ -422,7 +422,7 @@ structure.
 ## Go Migrations
 
 1. Create your own goose binary, see [example](./examples/go-migrations)
-2. Import `github.com/pressly/goose`
+2. Import `github.com/vnlozan/goose`
 3. Register your migration functions
 4. Run goose command, ie. `goose.Up(db *sql.DB, dir string)`
 
@@ -435,7 +435,7 @@ package migrations
 import (
 	"database/sql"
 
-	"github.com/pressly/goose/v3"
+	"github.com/vnlozan/goose/v3"
 )
 
 func init() {
@@ -465,7 +465,7 @@ not end with `*_test.go`.
 # Hybrid Versioning
 
 Please, read the [versioning
-problem](https://github.com/pressly/goose/issues/63#issuecomment-428681694) first.
+problem](https://github.com/vnlozan/goose/issues/63#issuecomment-428681694) first.
 
 By default, if you attempt to apply missing (out-of-order) migrations `goose` will raise an error.
 However, If you want to apply these missing migrations pass goose the `-allow-missing` flag, or if
